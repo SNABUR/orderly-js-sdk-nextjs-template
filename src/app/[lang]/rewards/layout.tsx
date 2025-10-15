@@ -26,6 +26,7 @@ export default function TradingRewardsLayout(props: { children: ReactNode }) {
       leftSideProps={{
         current: path,
       }}
+      bottomNavProps={config.scaffold.bottomNavProps}
     >
       {props.children}
     </TradingRewardsLayoutWidget>

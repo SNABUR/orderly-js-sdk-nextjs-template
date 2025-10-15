@@ -3,7 +3,21 @@ import { type RestrictedInfoOptions } from "@orderly.network/hooks";
 import { useTranslation } from "@orderly.network/i18n";
 import { AppLogos } from "@orderly.network/react-app";
 import { TradingPageProps } from "@orderly.network/trading";
-import { FooterProps, MainNavWidgetProps } from "@orderly.network/ui-scaffold";
+import {
+  PortfolioInactiveIcon,
+  LeaderboardActiveIcon,
+  MarketsActiveIcon,
+  TradingInactiveIcon,
+  TradingActiveIcon,
+  MarketsInactiveIcon,
+  LeaderboardInactiveIcon,
+  PortfolioActiveIcon,
+} from "@orderly.network/ui";
+import {
+  FooterProps,
+  MainNavWidgetProps,
+  BottomNavProps,
+} from "@orderly.network/ui-scaffold";
 import { PathEnum } from "@/constant";
 import { OrderlyActiveIcon, OrderlyIcon } from "../components/icons/orderly";
 
@@ -15,6 +29,7 @@ export type OrderlyConfig = {
   scaffold: {
     mainNavProps: MainNavWidgetProps;
     footerProps: FooterProps;
+    bottomNavProps: BottomNavProps;
   };
   tradingPage: {
     tradingViewConfig: TradingPageProps["tradingViewConfig"];
@@ -70,6 +85,34 @@ export const useOrderlyConfig = () => {
           discordUrl: "https://discord.com/invite/orderlynetwork",
           twitterUrl: "https://twitter.com/OrderlyNetwork",
         },
+        bottomNavProps: {
+          mainMenus: [
+            {
+              name: t("common.markets"),
+              href: PathEnum.Markets,
+              activeIcon: <MarketsActiveIcon />,
+              inactiveIcon: <MarketsInactiveIcon />,
+            },
+            {
+              name: t("common.trading"),
+              href: PathEnum.Root,
+              activeIcon: <TradingActiveIcon />,
+              inactiveIcon: <TradingInactiveIcon />,
+            },
+            {
+              name: t("tradingLeaderboard.leaderboard"),
+              href: PathEnum.Leaderboard,
+              activeIcon: <LeaderboardActiveIcon />,
+              inactiveIcon: <LeaderboardInactiveIcon />,
+            },
+            {
+              name: t("common.portfolio"),
+              href: PathEnum.Portfolio,
+              activeIcon: <PortfolioActiveIcon />,
+              inactiveIcon: <PortfolioInactiveIcon />,
+            },
+          ],
+        },
       },
       orderlyAppProvider: {
         appIcons: {
@@ -97,7 +140,7 @@ export const useOrderlyConfig = () => {
           // scriptSRC: "/tradingview/charting_library/charting_library.js",
           // library_path: "/tradingview/charting_library/",
           // customCssUrl: "/tradingview/chart.css",
-        },
+        } as TradingPageProps["tradingViewConfig"],
         sharePnLConfig: {
           backgroundImages: [
             "/images/pnl/poster_bg_1.png",

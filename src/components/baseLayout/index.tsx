@@ -28,6 +28,7 @@ export const BaseLayout: FC<BaseLayoutProps> = (props) => {
         onRouteChange,
       }}
       classNames={props.classNames}
+      bottomNavProps={config.scaffold.bottomNavProps}
     >
       {props.children}
     </Scaffold>
